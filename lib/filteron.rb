@@ -2,5 +2,8 @@ require "filteron/version"
 require "filterable"
 
 module Filteron
-  # Your code goes here...
+  # Accepts string or symbol arguments, returns a symbol
+  def field_to_scope_name field_name
+    ("_" + field_name.to_s).to_sym
+  end
 end

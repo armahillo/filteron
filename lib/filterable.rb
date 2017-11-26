@@ -6,8 +6,10 @@ require 'active_support'
 module Filterable
 	extend ActiveSupport::Concern
 
+  @@filteron = []
+
   def self.included(base)
-    base.class_variable_set :@@filteron, []
+    #base.class_variable_set :@@filteron, []
   end
 
 	module ClassMethods
@@ -21,6 +23,22 @@ module Filterable
 			end
 			results
 		end
+
+    # filter_on
+    # This is run within the Model. It registers the field with the class variable
+    # and sets up a scope.
+    def filter_on(field)
+      filter_field = field_to_scope_name(field)
+      # FIXME: There has to be a more elegant way to do this.
+      # Register the field with the class var
+      class_variable_set(:@@filteron, class_variable_get(:@@filteron) << filter_field)
+      # Create the scope
+      if block_given?
+        # use the block for the scope definition
+      else
+        scope filter_field, ->(field_arg) { where(field.to_sym => (field_arg)) }
+      end
+    end
 
 
 	end
