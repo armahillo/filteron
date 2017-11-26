@@ -27,19 +27,20 @@ module Filterable
     # filter_on
     # This is run within the Model. It registers the field with the class variable
     # and sets up a scope.
-    def filter_on(field)
-      filter_field = field_to_scope_name(field)
+    # TODO: Accept a block to use as the filter method
+    def filter_on(field, existing_scope = nil)
+      # If the user is providing a scope, we don't want to inadvertently use something broken
+      unless existing_scope.nil? then raise unless self.respond_to?(existing_scope.to_sym) end
+
+      filter_field = existing_scope || field_to_scope_name(field)
       # FIXME: There has to be a more elegant way to do this.
       # Register the field with the class var
       class_variable_set(:@@filteron, class_variable_get(:@@filteron) << filter_field)
-      # Create the scope
-      if block_given?
-        # use the block for the scope definition
-      else
+      # Create the scope if one doesn't exist
+      if (existing_scope.nil?)
         scope filter_field, ->(field_arg) { where(field.to_sym => (field_arg)) }
       end
     end
-
 
 	end
 end
