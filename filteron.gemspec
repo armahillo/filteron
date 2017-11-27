@@ -9,19 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Aaron Hill"]
   spec.email         = ["armahillo@gmail.com"]
 
-  spec.summary       = %q{Provides layered filtering for ActiveRecord models}
+  spec.summary       = %q{Searching / filtering for ActiveRecord models}
   spec.description   = %q{Filteron acts as a bridge connecting filter form controls to your ActiveRecord scope, allowing for multi-layered combined scoping.}
-  spec.homepage      = "http://amhill.net"
+  spec.homepage      = "https://github.com/armahillo/filteron"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
