@@ -17,4 +17,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.before(:each) do
+    # We aren't likely to have enough methods to need DatabaseCleaner
+    User.delete_all
+  end
 end

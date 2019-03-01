@@ -1,3 +1,0 @@
-inherit_from:
-  - https://raw.githubusercontent.com/bkuhlmann/code_quality/v2.0.0/configurations/rubocop/ruby.yml
-  - https://raw.githubusercontent.com/bkuhlmann/code_quality/v2.0.0/configurations/rubocop/rails.yml
