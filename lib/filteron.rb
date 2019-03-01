@@ -1,4 +1,5 @@
 require "filteron/version"
+require "filteron/railtie" if defined?(Rails)
 require "filterable"
 
 module Filteron
