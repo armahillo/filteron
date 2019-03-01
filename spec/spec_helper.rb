@@ -1,6 +1,10 @@
 require "bundler/setup"
 require "filteron"
 
+# Boot the Dummy App
+require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+ENV["RAILS_ROOT"] ||= File.dirname(__FILE__) + "../dummy"
+
 Dir['./spec/support/**/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|

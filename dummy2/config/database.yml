@@ -1,0 +1,22 @@
+login: &login
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+default: &default
+  database: rails_template_dev
+  <<: *login
+
+production:
+  <<: *default
+
+stage:
+  <<: *default
+
+development:
+  <<: *default
+
+test:
+  database: rails_template_test
+  <<: *login

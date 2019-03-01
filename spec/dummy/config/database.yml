@@ -1,0 +1,19 @@
+default: &default
+  adapter: sqlite3
+  encoding: unicode
+  pool: 5
+  host: localhost
+  database: dummy_development
+
+production:
+  <<: *default
+
+stage:
+  <<: *default
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: dummy_test
